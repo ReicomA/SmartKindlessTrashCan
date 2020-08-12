@@ -1,5 +1,4 @@
-from motor import Motor
-from RPI.GPIO as GPIO
+import RPI.GPIO as GPIO
 import time
 
 class CoverMotor(Motor):

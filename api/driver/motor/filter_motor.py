@@ -1,4 +1,5 @@
-from motor import Motor
+import RPI.GPIO as GPIO
+import time
 
-class FilterMotor(Motor):
+class FilterMotor():
     pass
