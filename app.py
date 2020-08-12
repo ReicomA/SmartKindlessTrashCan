@@ -32,7 +32,11 @@ def home():
 @app.route('/sensor/<sensor>')
 def receive_data_from_sensor(sensor):
 
-    all_data = sensor_thread.data
+    all_data = None
+
+    while all_data = None:
+        all_data = sensor_thread.data
+
     
     if sensor == "temp": # 온도 체크
 
