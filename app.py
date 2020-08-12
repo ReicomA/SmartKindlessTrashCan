@@ -12,7 +12,7 @@ from api.receive_thread import *
 """
 app = Flask(__name__)
 HOST = "0.0.0.0"
-PORT = "8080"
+PORT = 8080
 ARDUINO_PORT = '/dev/ttyUSB0'
 
 sensor_thread = ReceiveThread(ARDUINO_PORT, (1,))
