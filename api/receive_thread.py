@@ -1,5 +1,5 @@
-from driver.sensor.sensor import *
-from driver.sensor.sensor_label import *
+from .driver.sensor.sensor import *
+from .driver.sensor.sensor_label import *
 import threading
 
 class ReceiveThread():
