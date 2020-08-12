@@ -56,6 +56,8 @@ function requestSonicData() {
 }
 
 function requestFunction() {
+
+    debugger;
     requestTempData();
     requestHumiData();
     requestWaterData();
