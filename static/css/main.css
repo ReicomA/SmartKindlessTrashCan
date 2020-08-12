@@ -1,0 +1,11 @@
+.parent_layout {
+    float: none;
+}
+.component_layout {
+    float: left;
+}
+
+#value_layout {
+    float: none;
+    width: 90%;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    
+    <title>Smart Trash Box!</title>
+</head>
+<body style="background-image:  url( {{ url_for('static', filename='img/wallpaper.jpg') }} );">
+
+    <!-- status container -->
+    <div>
+        <!-- 상위층은 뚜껑열렸거나, 환풍기 작동 현황 -->
+        <div class="parent_layout" id="machine_layout">
+
+            <!-- 환풍기 레이아웃 -->
+            <div id="ventilator_layout" class="component_layout">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                      환풍기
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <!-- 환풍기 이미지 들어가야됨 -->
+                      <li class="list-group-item">
+                          <!-- 이미지 들어가는 부분 -->
+                          <div><h1>이미지 들어가는 부분이에요!!</h1></div>
+                      </li>
+                      <!-- 환풍기 작동 여부 -->
+                      <li class="list-group-item">
+                        <button type="button" class="btn btn-danger" id="ventilator_btn">작동 중지</button>
+                      </li>
+                    </ul>
+                  </div>
+            </div>
+            <!-- 뚜겅 레이아웃 -->
+            <div id="covered_layout" class="component_layout">
+                <div class="card" style="width: 18rem;">
+                    <!-- 밑뚜껑 타이틀 -->
+                    <div class="card-header">
+                        밑뚜껑
+                    </div>
+                    <!-- 밑뚜껑 이미지 들어가야됨 -->
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div><h1>이미지 들어가는 부분이에요!!</h1></div>
+                        </li>
+                        <!-- 밑뚜껑 이미지 작동여부-->
+                        <li class="list-group-item">
+                            <button type="button" class="btn btn-danger" id="covered_btn">작동 중지</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 기운거 레이아웃 -->
+            <div id="xiro_layout" class="component_layout">
+                <div class="card" style="width: 18rem;">
+                    <!-- 기울기 상태 -->
+                    <div class="card-header">
+                        쓰레기통 상태
+                    </div>
+                    <!-- 쓰레기통 이미지 들어가야댐! -->
+                    <ul class="list-group list-group-flush">
+                        <li class="list-gorup-item">
+                            <div>
+                                <h1>이미지 들어가는 부분이에요!!</h1>
+                                <h1>쓰레기통이 엎어져 있어요!!</h1>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- 하위층은 측정값 -->
+        <div class="parent_layout" id="value_layout">
+            <!-- 얘제 -->
+            <div class="card" style="width: 18rem;">
+                <li class="list-group-item">
+                    <h3 id="temp_value">0</h3>
+                </li>
+                <li class="list-group-item">
+                    <h3 id="humi_value">0</h3>
+                </li>
+                <li class="list-group-item">
+                    <h3 id="gas_value"></h3>
+                </li>
+                <li class="list-gorup-item">
+                    <h3 id="xiro_value"></h3>
+                </li>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="/static/js/requestData.js"></script>
+    <script src="/static/js/btnEvent.js"></script>
+
+
+</body>
+</html>
