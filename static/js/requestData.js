@@ -59,6 +59,7 @@ function requestFunction() {
     requestHumiData();
     requestWaterData();
     requestGasData();
+    requestSonicData();
 
     setTimeout(requestFunction, 500);
 
