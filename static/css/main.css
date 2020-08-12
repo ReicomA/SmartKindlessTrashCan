@@ -8,4 +8,5 @@
 #value_layout {
     float: none;
     width: 90%;
+    visibility: hidden;
 }

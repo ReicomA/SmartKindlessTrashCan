@@ -1,22 +1,80 @@
 import json
 from flask import Flask, render_template
-from random import random
+from random import *
 from flask import Flask, render_template, make_response
 
 from api.driver.sensor.sensor import *
 from api.driver.sensor.sensor_label import *
 from api.receive_thread import *
 
+# WarningClass
+class WarningFlag:
+    def __init__(self):
+        self.temp = False
+        self.humi = False
+        self.gas = False
+        self.water = False
+        self.sonic = False
+
+        self.isCoverMotorUsing = False
+        self.isFilterMotorUsing = False
+    
+    # 필터 작동 여부
+    def check_filter_must_be_working(self):
+        now_woking = (self.temp or self.humi or self.gas)
+        
+        # 작동 시작
+        if now_woking is True:
+            if self.isFilterMotorUsing is False:
+                print("Filter On")
+                self.isFilterMotorUsing = now_woking
+                # TODO 필터 작성 시작
+                return "Filter On"
+
+        # 작동 중지
+        if now_woking is False:
+            if self.isFilterMotorUsing is True:
+                print("Filter Off")
+                self.isFilterMotorUsing = now_woking
+                # TODO 필터 작동 중지
+                return "Filter Off"
+
+        self.isFilterMotorUsing = now_woking
+
+
+    def check_cover_must_be_open(self):
+        now_woking = self.water
+
+        if now_woking is True:
+            if self.isCoverMotorUsing is False:
+                print("Cover On")
+                # TODO 뚜껑 여는 코드 작성
+                self.isCoverMotorUsing  = now_woking
+                return "Cover On"
+        
+        if now_woking is False:
+            if self.isCoverMotorUsing is True:
+                print("Cover Off")
+                # TODO 뚜껑 닫는 코드 작성
+                self.isCoverMotorUsing  = now_woking
+                return "Cover Off"
+
+        self.isCoverMotorUsing = now_woking
+        
 """
     values: host, ip
 """
 app = Flask(__name__)
 HOST = "0.0.0.0"
 PORT = 8080
-ARDUINO_PORT = '/dev/ttyUSB0'
+ARDUINO_PORT = 'COM3'
 
+""" TODO RECEIVE_CODE
 sensor_thread = ReceiveThread(ARDUINO_PORT, (1,))
 sensor_thread.start_receive()
+"""
+
+warning_flag = WarningFlag()
 
 @app.route('/')
 def home():
@@ -32,25 +90,40 @@ def home():
 @app.route('/sensor/<sensor>')
 def receive_data_from_sensor(sensor):
 
-    all_data = None
+    all_data \
+        = {NAME_TEMP: randint(20, 40), NAME_HUMI: randint(50, 80), NAME_GAS: randint(400, 900), NAME_WATER: randint(1, 20), NAME_SONIC: randint(0, 40)}
 
+    """ TODO RECEIVE CODE
     while all_data == None:
         all_data = sensor_thread.data
-
+        time.sleep(0.01)
+    """
+    print(all_data)
     
     if sensor == "temp": # 온도 체크
 
         #온도 값 불러오기
         #temp = random() * 100
         temp = all_data[NAME_TEMP]
-        
 
-        # 적정 수치가 맞는지 계산.....
-        # TODO 수식 써야됨
-        
-        isWarning = True
+        # 한계치 확인        
+        if temp >= WARN_TEMP:
+            warning_flag.temp = True
+        else:
+            warning_flag.temp = False
 
-        data = (temp, isWarning)
+        # 작동 여부 확인        
+        filter_on = warning_flag.check_filter_must_be_working()
+        cover_on = warning_flag.check_cover_must_be_open()
+
+        # Javascript에 결과를 보내기 위한 준비
+        if filter_on == None:
+            filter_on = "null"
+        if cover_on == None:
+            cover_on = "null"
+
+        data = (temp, filter_on, cover_on)
+
         response = make_response(json.dumps(data))
         response.content_type = 'application/json'
         return response
@@ -58,12 +131,21 @@ def receive_data_from_sensor(sensor):
     elif sensor == "humi": # 습도 체크
         humi = all_data[NAME_HUMI]
 
-        # 적정 수치가 맞는 지 계산
-        # TODO 수식 써야됨..
+        # 한계치 확인
+        if humi >= WARN_HUMI:
+            warning_flag.humi = True
+        else:
+            warning_flag.humi = False
         
-        isWarning = True
+        filter_on = warning_flag.check_filter_must_be_working()
+        cover_on = warning_flag.check_cover_must_be_open()
+        
+        if filter_on == None:
+            filter_on = "null"
+        if cover_on == None:
+            cover_on = "null"
 
-        data = (humi, isWarning)
+        data = (humi, filter_on, cover_on)
 
         response = make_response(json.dumps(data))
         response.content_type = 'application/json'
@@ -72,33 +154,77 @@ def receive_data_from_sensor(sensor):
     elif sensor == "gas": # 가스 체크
 
         gas = all_data[NAME_GAS]
-        isWarning = True
+        
+        # 한계치 확인
+        if gas >= WARN_GAS:
+            warning_flag.gas = True
+        else:
+            warning_flag.gas = False
 
-        data = (gas, isWarning)
+        filter_on = warning_flag.check_filter_must_be_working()
+        cover_on = warning_flag.check_cover_must_be_open()
+
+        if filter_on == None:
+            filter_on = "null"
+        if cover_on == None:
+            cover_on = "null"
+
+        data = (gas, filter_on, cover_on)
         response = make_response(json.dumps(data))
         response.content_type = 'application/json'
         return response
         
-    elif sensor == "water": # 자이로스코프 체크
+    elif sensor == "water": # 수위센서
 
         water = all_data[NAME_WATER]
-        isWarning = True
+        
+        if water >= WARN_WATER:
+            warning_flag.water = True
+        else:
+            warning_flag.water = False
 
-        data = (water, isWarning)
+        filter_on = warning_flag.check_filter_must_be_working()
+        cover_on = warning_flag.check_cover_must_be_open()
+
+        if filter_on == None:
+            filter_on = "null"
+        if cover_on == None:
+            cover_on = "null"
+
+        data = (water, filter_on, cover_on)
+
         response = make_response(json.dumps(data))
         response.content_type = "application/json"
         return response
 
     elif sensor == "sonic":
+
         sonic = all_data[NAME_SONIC]
-        isWarning = True
-        data = (sonic, isWarning)
+
+        if sonic < WARN_SONIC:
+            warning_flag.sonic = True
+        else:
+            warning_flag.sonic = False
+
+        filter_on = warning_flag.check_filter_must_be_working()
+        cover_on = warning_flag.check_cover_must_be_open()
+
+        if filter_on == None:
+            filter_on = "null"
+        if cover_on == None:
+            cover_on = "null"
+
+        data = (sonic, filter_on, cover_on)
+        
         response = make_response(json.dumps(data))
         response.content_type = "application/json"
 
         return response
     else:
         return "ERR"
+
+
+    
 
 @app.route('/request/machine/<machine>')
 def request_to_machine():

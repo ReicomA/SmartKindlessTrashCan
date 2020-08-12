@@ -26,7 +26,7 @@
                         <!-- 환풍기 이미지 들어가야됨 -->
                       <li class="list-group-item">
                           <!-- 이미지 들어가는 부분 -->
-                          <div><h1>이미지 들어가는 부분이에요!!</h1></div>
+                            <img src="{{ url_for('static', filename='img/filter_off.png') }}" width="200" height="200" id="filter_img">
                       </li>
                       <!-- 환풍기 작동 여부 -->
                       <li class="list-group-item">
@@ -45,7 +45,7 @@
                     <!-- 밑뚜껑 이미지 들어가야됨 -->
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <div><h1>이미지 들어가는 부분이에요!!</h1></div>
+                            <img src="{{ url_for('static', filename='img/cover_off.png') }}" width="200" height="200" id="cover_img">
                         </li>
                         <!-- 밑뚜껑 이미지 작동여부-->
                         <li class="list-group-item">
@@ -59,14 +59,13 @@
                 <div class="card" style="width: 18rem;">
                     <!-- 기울기 상태 -->
                     <div class="card-header">
-                        쓰레기통 상태
+                        쓰레기 양
                     </div>
                     <!-- 쓰레기통 이미지 들어가야댐! -->
                     <ul class="list-group list-group-flush">
                         <li class="list-gorup-item">
                             <div>
-                                <h1>이미지 들어가는 부분이에요!!</h1>
-                                <h1>쓰레기통이 엎어져 있어요!!</h1>
+                                <img src="{{ url_for('static', filename='img/cover_off.png') }}" width="200" height="200" id="trash_img">
                             </div>
                         </li>
                     </ul>
