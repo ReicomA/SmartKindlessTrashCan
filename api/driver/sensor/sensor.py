@@ -1,8 +1,8 @@
 from abc import *
 from serial import Serial
 
-#from . import sensor_label
-import sensor_label
+from . import sensor_label
+#import sensor_label
 class SensorReceiver():
     """
         온도-습도-가스-수위-기울기
