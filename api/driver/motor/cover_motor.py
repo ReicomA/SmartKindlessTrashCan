@@ -1,5 +1,6 @@
 from motor import Motor
 from RPI.GPIO as GPIO
+import time
 
 class CoverMotor(Motor):
     def __init__(self, pin):
@@ -17,3 +18,10 @@ class CoverMotor(Motor):
     
     def right(self):
         self.motor.ChangeDutyCircle(9)
+
+
+if __name__== "__main__":
+    p = CoverMotor(19)
+    p.left()
+    time.sleep(1)
+    p.right()
