@@ -5,7 +5,7 @@ from flask import Flask, render_template, make_response
 
 from api.driver.sensor.sensor import *
 from api.driver.sensor.sensor_label import *
-from api.driver.receive.thread import *
+from api.driver.receive_thread import *
 
 """
     values: host, ip
