@@ -16,7 +16,7 @@ PORT = "8080"
 ARDUINO_PORT = '/dev/ttyUSB0'
 
 sensor_thread = ReceiveThread(ARDUINO_PORT, (1,))
-sensor_thread.start()
+sensor_thread.start_receive()
 
 @app.route('/')
 def home():
