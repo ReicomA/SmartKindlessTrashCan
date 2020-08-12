@@ -85,7 +85,7 @@ def receive_data_from_sensor(sensor):
         response.content_type = "application/json"
         return response
 
-    elif sensor == sonic:
+    elif sensor == "sonic":
         sonic = all_data[NAME_SONIC]
         isWarning = True
         data = (sonic, isWarning)
