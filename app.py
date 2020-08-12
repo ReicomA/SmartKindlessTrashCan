@@ -52,7 +52,7 @@ def receive_data_from_sensor(sensor):
         return response
 
     elif sensor == "humi": # 습도 체크
-        humi = random() * 10
+        humi = all_data[NAME_HUMI]
 
         # 적정 수치가 맞는 지 계산
         # TODO 수식 써야됨..
@@ -67,7 +67,7 @@ def receive_data_from_sensor(sensor):
 
     elif sensor == "gas": # 가스 체크
 
-        gas = random() * 10
+        gas = all_data[NAME_GAS]
         isWarning = True
 
         data = (gas, isWarning)
@@ -75,11 +75,23 @@ def receive_data_from_sensor(sensor):
         response.content_type = 'application/json'
         return response
         
-    elif sensor == "xiro": # 자이로스코프 체크
+    elif sensor == "water": # 자이로스코프 체크
 
-        data = random() * 10
+        water = all_data[NAME_WATER]
+        isWarning = True
+
+        data = (water, isWarning)
         response = make_response(json.dumps(data))
         response.content_type = "application/json"
+        return response
+
+    elif sensor == sonic:
+        sonic = all_data[NAME_SONIC]
+        isWarning = True
+        data = (sonic, isWarning)
+        response = make_response(json.dumps(data))
+        response.content_type = "application/json"
+
         return response
     else:
         return "ERR"

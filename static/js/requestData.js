@@ -34,22 +34,30 @@ function requestGasData() {
         cache: false
     });
 }
-// xiro Data
-function requestXiroData() {
+// water Data
+function requestWaterData() {
     $.ajax({
-        url: '/sensor/xiro',
+        url: '/sensor/water',
         success: function(point) {
             // write html functions
-            $('#xiro_value').text(point);
+            $('#water_value').text(point);
         },
         cache: false
+    });
+}
+function requestSonicData() {
+    $.ajax({
+        url: '/sensor/sonic',
+        success: function(point) {
+            $('#sonic_value').text(point)
+        }
     });
 }
 
 function requestFunction() {
     requestTempData();
     requestHumiData();
-    requestXiroData();
+    requestWaterData();
     requestGasData();
 
     setTimeout(requestFunction, 500);

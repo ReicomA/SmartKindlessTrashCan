@@ -15,7 +15,6 @@ class ReceiveThread():
     def thread_method(self, i):
         while True:
             self.data = self.sensor.receive_data()
-            print(self.data)
 
     def start_receive(self):
         self.thread_engine.start()
