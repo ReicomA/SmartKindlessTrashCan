@@ -50,7 +50,8 @@ function requestSonicData() {
         url: '/sensor/sonic',
         success: function(point) {
             $('#sonic_value').text(point)
-        }
+        },
+        cache: false
     });
 }
 
