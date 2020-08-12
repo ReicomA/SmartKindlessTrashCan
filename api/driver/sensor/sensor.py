@@ -35,6 +35,7 @@ class SensorReceiver():
         result_data[sensor_label.NAME_GAS] = float(raw_data[2])
         result_data[sensor_label.NAME_WATER] = float(raw_data[3])
         result_data[sensor_label.NAME_SONIC] = float(raw_data[4])
+        print(result_data)
 
         return result_data
 
