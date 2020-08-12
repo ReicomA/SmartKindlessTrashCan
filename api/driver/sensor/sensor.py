@@ -31,11 +31,11 @@ class SensorReceiver():
 
         # 데이터 구조를 Set으로 변경
         result_data = {}
-        result_data[sensor_label.NAME_TEMP] = float(raw_data[0])
-        result_data[sensor_label.NAME_HUMI] = float(raw_data[1])
-        result_data[sensor_label.NAME_GAS] = float(raw_data[2])
-        result_data[sensor_label.NAME_WATER] = float(raw_data[3])
-        result_data[sensor_label.NAME_SONIC] = float(raw_data[4])
+        result_data[sensor_label.NAME_TEMP] = int(raw_data[0])
+        result_data[sensor_label.NAME_HUMI] = int(raw_data[1])
+        result_data[sensor_label.NAME_GAS] = int(raw_data[2])
+        result_data[sensor_label.NAME_WATER] = int(raw_data[3])
+        result_data[sensor_label.NAME_SONIC] = int(raw_data[4])
 
         return result_data
 
