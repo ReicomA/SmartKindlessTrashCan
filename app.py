@@ -34,7 +34,7 @@ def receive_data_from_sensor(sensor):
 
     all_data = None
 
-    while all_data = None:
+    while all_data == None:
         all_data = sensor_thread.data
 
     
