@@ -164,7 +164,7 @@ def receive_data_from_sensor(sensor):
 
         if filter_on == "Filter On":
             filter_motor.start_filtering()
-        elif filter_off == "Filter Off":
+        elif filter_on == "Filter Off":
             filter_motor.stop_filtering()
 
         data = (humi, filter_on, cover_on)
@@ -198,7 +198,7 @@ def receive_data_from_sensor(sensor):
             
         if filter_on == "Filter On":
             filter_motor.start_filtering()
-        elif filter_off == "Filter Off":
+        elif filter_on == "Filter Off":
             filter_motor.stop_filtering()
 
 
@@ -231,7 +231,7 @@ def receive_data_from_sensor(sensor):
             
         if filter_on == "Filter On":
             filter_motor.start_filtering()
-        elif filter_off == "Filter Off":
+        elif filter_on == "Filter Off":
             filter_motor.stop_filtering()
 
         data = (water, filter_on, cover_on)
@@ -264,7 +264,7 @@ def receive_data_from_sensor(sensor):
             
         if filter_on == "Filter On":
             filter_motor.start_filtering()
-        elif filter_off == "Filter Off":
+        elif filter_on == "Filter Off":
             filter_motor.stop_filtering()
 
         data = (sonic, filter_on, cover_on)
