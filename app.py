@@ -90,7 +90,7 @@ def home():
 @app.route('/sensor/<sensor>')
 def receive_data_from_sensor(sensor):
 
-    all_data = {}
+    all_data = None
     """
     all_data \
         = {NAME_TEMP: randint(20, 40), NAME_HUMI: randint(50, 80), NAME_GAS: randint(400, 900), NAME_WATER: randint(1, 20), NAME_SONIC: randint(0, 40)}
