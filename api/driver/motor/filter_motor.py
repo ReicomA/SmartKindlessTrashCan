@@ -3,7 +3,7 @@ import time
 
 class FilterMotor():
     def __init__(self, pin):
-        GPIO.setup(pin, GPIO.OUTPUT)
+        GPIO.setup(pin, GPIO.OUT)
         self.pin = pin
     
     def start_filtering(self):
