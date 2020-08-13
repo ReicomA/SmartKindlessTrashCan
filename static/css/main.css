@@ -10,3 +10,16 @@
     width: 90%;
     visibility: hidden;
 }
+
+.status-img {
+    display: block;
+    margin: auto;
+}
+#status-container {
+    margin: 20px;
+    width: 600px;
+    height: 400px;
+
+    top: 50%;
+    left: 50%;
+}

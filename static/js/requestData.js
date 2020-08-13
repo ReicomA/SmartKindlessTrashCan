@@ -264,7 +264,7 @@ function requestFunction() {
     requestGasData();
     requestSonicData();
 
-    setTimeout(requestFunction, 500);
+    setTimeout(requestFunction, 2000);
 
 }
 

@@ -67,12 +67,11 @@ class WarningFlag:
 app = Flask(__name__)
 HOST = "0.0.0.0"
 PORT = 8080
-ARDUINO_PORT = 'COM3'
+ARDUINO_PORT = '/dev/ttyUSB0'
 
-""" TODO RECEIVE_CODE
+
 sensor_thread = ReceiveThread(ARDUINO_PORT, (1,))
 sensor_thread.start_receive()
-"""
 
 warning_flag = WarningFlag()
 
@@ -85,19 +84,23 @@ def home():
     1. 온도
     2. 습도
     3. 메탄(가스)
-    4. 기울기
+    4. 수위
+    5. 초음파
 """
 @app.route('/sensor/<sensor>')
 def receive_data_from_sensor(sensor):
 
+    all_data = {}
+    """
     all_data \
         = {NAME_TEMP: randint(20, 40), NAME_HUMI: randint(50, 80), NAME_GAS: randint(400, 900), NAME_WATER: randint(1, 20), NAME_SONIC: randint(0, 40)}
+    """   
 
-    """ TODO RECEIVE CODE
+    
     while all_data == None:
         all_data = sensor_thread.data
         time.sleep(0.01)
-    """
+    
     print(all_data)
     
     if sensor == "temp": # 온도 체크
