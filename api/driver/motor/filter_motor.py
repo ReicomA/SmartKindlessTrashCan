@@ -7,6 +7,6 @@ class FilterMotor():
         self.pin = pin
     
     def start_filtering(self):
-        GPIO.output(pin, True)
+        GPIO.output(self.pin, True)
     def stop_filtering(self):
-        GPIO.output(pin, False)
+        GPIO.output(self.pin, False)
