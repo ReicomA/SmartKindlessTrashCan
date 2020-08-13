@@ -7,6 +7,7 @@ from api.driver.sensor.sensor import *
 from api.driver.sensor.sensor_label import *
 from api.receive_thread import *
 from api.driver.motor.cover_motor import *
+from api.driver.motor.filter_motor import *
 
 import time
 
@@ -73,6 +74,7 @@ PORT = 8080
 ARDUINO_PORT = '/dev/ttyUSB0'
 
 cover_motor = CoverMotor(26)
+filter_motor = FilterMotor(17)
 
 sensor_thread = ReceiveThread(ARDUINO_PORT, (1,))
 sensor_thread.start_receive()
@@ -160,6 +162,11 @@ def receive_data_from_sensor(sensor):
         elif cover_on == "Cover Off":
             cover_motor.right()
 
+        if filter_on == "Filter On":
+            filter_motor.start_filtering()
+        elif filter_off == "Filter Off":
+            filter_motor.stop_filtering()
+
         data = (humi, filter_on, cover_on)
 
         response = make_response(json.dumps(data))
@@ -188,6 +195,11 @@ def receive_data_from_sensor(sensor):
             cover_motor.left()
         elif cover_on == "Cover Off":
             cover_motor.right()
+            
+        if filter_on == "Filter On":
+            filter_motor.start_filtering()
+        elif filter_off == "Filter Off":
+            filter_motor.stop_filtering()
 
 
         data = (gas, filter_on, cover_on)
@@ -216,6 +228,11 @@ def receive_data_from_sensor(sensor):
             cover_motor.left()
         elif cover_on == "Cover Off":
             cover_motor.right()
+            
+        if filter_on == "Filter On":
+            filter_motor.start_filtering()
+        elif filter_off == "Filter Off":
+            filter_motor.stop_filtering()
 
         data = (water, filter_on, cover_on)
 
@@ -244,6 +261,11 @@ def receive_data_from_sensor(sensor):
             cover_motor.left()
         elif cover_on == "Cover Off":
             cover_motor.right()
+            
+        if filter_on == "Filter On":
+            filter_motor.start_filtering()
+        elif filter_off == "Filter Off":
+            filter_motor.stop_filtering()
 
         data = (sonic, filter_on, cover_on)
         
