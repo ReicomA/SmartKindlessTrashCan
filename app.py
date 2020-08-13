@@ -6,6 +6,7 @@ from flask import Flask, render_template, make_response
 from api.driver.sensor.sensor import *
 from api.driver.sensor.sensor_label import *
 from api.receive_thread import *
+from api.driver.motor.cover_motor import *
 
 import time
 
@@ -71,6 +72,7 @@ HOST = "0.0.0.0"
 PORT = 8080
 ARDUINO_PORT = '/dev/ttyUSB0'
 
+cover_motor = CoverMotor(26)
 
 sensor_thread = ReceiveThread(ARDUINO_PORT, (1,))
 sensor_thread.start_receive()
@@ -97,8 +99,6 @@ def receive_data_from_sensor(sensor):
     all_data \
         = {NAME_TEMP: randint(20, 40), NAME_HUMI: randint(50, 80), NAME_GAS: randint(400, 900), NAME_WATER: randint(1, 20), NAME_SONIC: randint(0, 40)}
     """   
-
-    
     while all_data == None:
         all_data = sensor_thread.data
         time.sleep(0.01)
@@ -127,6 +127,11 @@ def receive_data_from_sensor(sensor):
         if cover_on == None:
             cover_on = "null"
 
+        if cover_on == "Cover On":
+            cover_motor.left()
+        elif cover_on == "Cover Off":
+            cover_motor.right()
+
         data = (temp, filter_on, cover_on)
 
         response = make_response(json.dumps(data))
@@ -149,6 +154,11 @@ def receive_data_from_sensor(sensor):
             filter_on = "null"
         if cover_on == None:
             cover_on = "null"
+
+        if cover_on == "Cover On":
+            cover_motor.left()
+        elif cover_on == "Cover Off":
+            cover_motor.right()
 
         data = (humi, filter_on, cover_on)
 
@@ -174,6 +184,12 @@ def receive_data_from_sensor(sensor):
         if cover_on == None:
             cover_on = "null"
 
+        if cover_on == "Cover On":
+            cover_motor.left()
+        elif cover_on == "Cover Off":
+            cover_motor.right()
+
+
         data = (gas, filter_on, cover_on)
         response = make_response(json.dumps(data))
         response.content_type = 'application/json'
@@ -195,6 +211,11 @@ def receive_data_from_sensor(sensor):
             filter_on = "null"
         if cover_on == None:
             cover_on = "null"
+
+        if cover_on == "Cover On":
+            cover_motor.left()
+        elif cover_on == "Cover Off":
+            cover_motor.right()
 
         data = (water, filter_on, cover_on)
 
@@ -218,6 +239,11 @@ def receive_data_from_sensor(sensor):
             filter_on = "null"
         if cover_on == None:
             cover_on = "null"
+
+        if cover_on == "Cover On":
+            cover_motor.left()
+        elif cover_on == "Cover Off":
+            cover_motor.right()
 
         data = (sonic, filter_on, cover_on)
         

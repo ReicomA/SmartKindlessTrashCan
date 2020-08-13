@@ -1,7 +1,7 @@
 import RPI.GPIO as GPIO
 import time
 
-class CoverMotor(Motor):
+class CoverMotor:
     def __init__(self, pin):
         self.motor = None
 
