@@ -108,10 +108,13 @@ def receive_data_from_sensor(sensor):
     print(all_data)
     
     if sensor == "temp": # 온도 체크
-
+        temp = 0
         #온도 값 불러오기
         #temp = random() * 100
-        temp = all_data[NAME_TEMP]
+        try:
+            temp = all_data[NAME_TEMP]
+        except Exception:
+            temp = 25
 
         # 한계치 확인        
         if temp >= WARN_TEMP:
@@ -141,7 +144,12 @@ def receive_data_from_sensor(sensor):
         return response
 
     elif sensor == "humi": # 습도 체크
-        humi = all_data[NAME_HUMI]
+        
+        humi = 0
+        try:
+            humi = all_data[NAME_HUMI]
+        except Exception:
+            humi = 50
 
         # 한계치 확인
         if humi >= WARN_HUMI:
@@ -175,7 +183,11 @@ def receive_data_from_sensor(sensor):
 
     elif sensor == "gas": # 가스 체크
 
-        gas = all_data[NAME_GAS]
+        gas = 0
+        try:
+            gas = all_data[NAME_GAS]
+        except Exception:
+            gas = 450
         
         # 한계치 확인
         if gas >= WARN_GAS:
@@ -209,7 +221,11 @@ def receive_data_from_sensor(sensor):
         
     elif sensor == "water": # 수위센서
 
-        water = all_data[NAME_WATER]
+        water = 0
+        try:
+            water = all_data[NAME_WATER]
+        except Exception:
+            water = 5
         
         if water >= WARN_WATER:
             warning_flag.water = True
@@ -242,7 +258,11 @@ def receive_data_from_sensor(sensor):
 
     elif sensor == "sonic":
 
-        sonic = all_data[NAME_SONIC]
+        sonic = 0
+        try:
+            sonic = all_data[NAME_SONIC]
+        except Exception:
+            sonic = 15
 
         if sonic < WARN_SONIC:
             warning_flag.sonic = True
