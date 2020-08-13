@@ -37,16 +37,17 @@ function requestTempData() {
             // Motor Check
 
             if(point[2] == "Cover On") {
-                document.getElementById("cover_img").src = "https://hjh-iot-hackathon.s3.ap-northeast-2.amazonaws.com/cover_on.png";
-                $('#covered_btn').removeClass('btn-danger');
-                $('#covered_btn').addClass('btn-success');
-                $('#covered_btn').html('작동중');
-                
-            } else if(point[2] == "Cover Off") {
                 document.getElementById("cover_img").src = "https://hjh-iot-hackathon.s3.ap-northeast-2.amazonaws.com/cover_off.png";
                 $('#covered_btn').removeClass('btn-success');
                 $('#covered_btn').addClass('btn-danger');
                 $('#covered_btn').html('작동 중지');   
+
+                
+            } else if(point[2] == "Cover Off") {
+                document.getElementById("cover_img").src = "https://hjh-iot-hackathon.s3.ap-northeast-2.amazonaws.com/cover_on.png";
+                $('#covered_btn').removeClass('btn-danger');
+                $('#covered_btn').addClass('btn-success');
+                $('#covered_btn').html('작동중');  
             }
         },
 

@@ -1,7 +1,7 @@
 from .driver.sensor.sensor import *
 from .driver.sensor.sensor_label import *
 import threading
-from threading import Lock()
+from threading import Lock
 
 class ReceiveThread():
 
