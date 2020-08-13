@@ -7,6 +7,8 @@ from api.driver.sensor.sensor import *
 from api.driver.sensor.sensor_label import *
 from api.receive_thread import *
 
+import time
+
 # WarningClass
 class WarningFlag:
     def __init__(self):
