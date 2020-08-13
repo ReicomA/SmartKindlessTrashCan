@@ -13,9 +13,10 @@
 * HW
   * RedBoard(Arduino, Sensor System)
   * Raspberry Pi 3 B+ (Motor System, Main Server)
+  * AWS S3(이미지 저장 서버)
 * SW
   * Flask(WAS) - Python
-  * Web FrontEnd(HTML, CSS, JavaScript)
+  * Web FrontEnd(HTML, CSS, JavaScript+JQuery)
 * Sensor
   * 초음파 센서 - 침입자 감지
   * DC 모터 - 환풍기
