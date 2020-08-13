@@ -97,23 +97,12 @@ def home():
 def receive_data_from_sensor(sensor):
 
     all_data = None
-    
-    """
-    all_data \
-        = {NAME_TEMP: randint(20, 40), NAME_HUMI: randint(50, 80), NAME_GAS: randint(400, 900), NAME_WATER: randint(1, 20), NAME_SONIC: randint(0, 40)}
-        
-    """
 
-    all_data \
-     = {NAME_TEMP: 24, NAME_HUMI: 50, NAME_GAS: 450, NAME_WATER: randint(5, 20), NAME_SONIC: 10}
-
-    """   
     while all_data == None:
         sensor_thread.mutex.acquire()
         all_data = sensor_thread.data
         sensor_thread.mutex.release()
         time.sleep(0.01)
-    """
     
     print(all_data)
     
