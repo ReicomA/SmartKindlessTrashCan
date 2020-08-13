@@ -12,7 +12,12 @@ class SensorReceiver():
         self.raw_receiver = Serial(dev_root, 9600)
 
     def raw_receive(self):
-        return self.raw_receiver.readline().decode('utf-8')
+        data = None
+        try:
+            data = self.raw_receiver.readline().decode('utf-8')
+        except Exception as e:
+            pass
+        return data
     
     # final receive
     def receive_data(self):
