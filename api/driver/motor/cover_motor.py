@@ -13,10 +13,10 @@ class CoverMotor:
         self.motor.start(0)
 
     def left(self):
-        self.motor.ChangeDutyCircle(2)
+        self.motor.ChangeDutyCycle(2)
     
     def right(self):
-        self.motor.ChangeDutyCircle(9)
+        self.motor.ChangeDutyCycle(9)
 
 
 if __name__== "__main__":
