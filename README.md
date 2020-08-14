@@ -35,6 +35,15 @@
 * 안드로이드 어플리케이션 추가구현
 * 창고 환경 데이터를 주기적으로 저장하여 원하는 조건에 환경변화를 분석하는 기능 추가
 * 안전한 시스템 및 데이터 관리를 위한 클라우드, 네트워크 솔루션 필요
+
+
+## 데모 영상
+* 창고 안의 가스가 일정 수치 이상 들어갈 경우 환풍기 가동
+![demo01](https://hjh-iot-hackathon.s3.ap-northeast-2.amazonaws.com/iot_1.gif)
+* 물의 수위가 일정 이상 올라가면 밑의 구멍이 열리면서 물기를 제거(데모 당시 물 대신 터치로 대체)
+![demo02](https://hjh-iot-hackathon.s3.ap-northeast-2.amazonaws.com/iot_3.gif)
+* 웹 상에서의 수치 모니터링
+![demo03](https://hjh-iot-hackathon.s3.ap-northeast-2.amazonaws.com/iot_2.gif)
   
   
 ## TEAM MEMBERS
